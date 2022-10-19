@@ -3,11 +3,17 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // TODO: Create an array of questions for user input
-const generateREADME = ({ title, description, installation, usage, guidelines, test }) =>
+const generateREADME = ({ title, description, installation, usage, guidelines, test, github, email, questions}) =>
 
 `# ${title} 
 ## Description
 ${description}
+## Table of Contents
+Installation
+Usage
+Contributing
+Tests
+Questions
 ## Installation
 ${installation}
 ## Usage
@@ -16,44 +22,69 @@ ${usage}
 ${guidelines}
 ## Tests
 ${test}
+## Questions
+My github is ${github}.
+My email is ${email}.
+Here is how you can reach me with additional questions ${questions}
 `
 
 inquirer
     .prompt ([
         {
-            type: 'title',
+            type: 'input',
             message: 'What is the project title?',
             name: 'title',
         },
         {
-            type: 'description',
+            type: 'input',
             message: 'Please describe the project.',
             name: 'description',
         },
         {
-            type: 'instructions',
+            type: 'input',
             message: 'What are the installation instruction?',
             name: 'installation',
         },
         {
-            type: 'usage',
+            type: 'input',
             message: 'Please include the usage information for this project.',
             name: 'usage',
         },
         {
-            type: 'guidelines',
+            type: 'input',
             message: 'What are the contribution guidelines?',
             name: 'guidelines',
         },
         {
-            type: 'test',
+            type: 'input',
             message: 'What are the test instructions?',
             name: 'test',
         },
+        {
+            type: 'input',
+            message: 'What is your GitHub link?',
+            name: 'github',
+        },
+        {
+            type: 'input',
+            message: 'What is your email address?',
+            name: 'email',
+        },
+        {
+            type: 'input',
+            message: 'How can you be reached for further questions?',
+            name: 'questions',
+        }
     ])
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+.then((answers) => {
+    const readmePageContent = generateREADME(answers);
+
+    fs.writeFile('README.md', readmePageContent, (err) =>
+    err ? console.log(err) : console.log('Successfully created README.md!')
+    );
+});
 
 // TODO: Create a function to initialize app
 function init() {}
