@@ -3,9 +3,9 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 // TODO: Create an array of questions for user input
-const generateREADME = ({ title, description, installation, usage, guidelines, test, github, email, questions}) =>
+const generateREADME = ({ title, description, installation, usage, guidelines, test, github, email, questions, license}) =>
 
-`# ${title} 
+`# ${title} ${license}
 ## Description
 ${description}
 ## Table of Contents
@@ -74,7 +74,22 @@ inquirer
             type: 'input',
             message: 'How can you be reached for further questions?',
             name: 'questions',
-        }
+        },
+        {
+            type: 'list',
+            message: 'Please choose a license.',
+            name: 'license',
+            choices: [
+                {
+                    name: 'MIT',
+                    value: '[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)',
+                },
+                {
+                    name: 'Mozilla',
+                    value: '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)',
+                },
+            ]
+        },
     ])
 
 // TODO: Create a function to write README file
