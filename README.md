@@ -7,3 +7,9 @@ Through Node.js, a README.md file is generated more easily for the user. It asks
 Inquirer is used to implement these prompts.
 
 Badges and licenses were acquired through this link: ('https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba')
+
+## Installation
+
+* Install the file from GitHub ('https://github.com/kmanoovi/Professional-README-Generator).
+
+* Install inquirer through the terminal in VSCode.
